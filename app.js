@@ -2,7 +2,6 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var moment = require('moment')
-require('dotenv').config();
 
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
@@ -49,7 +48,6 @@ function incrementDB(req, res, option) {
 }
 
 app.post('/a', function(req, res) {
-  console.log(req);
   incrementDB(req, res, 'A');
 });
 
