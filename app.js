@@ -33,7 +33,7 @@ var Day = sequelize.define('Day', {
   D: {type: Sequelize.INTEGER, defaultValue: 0}
 });
 
-sequelize.sync();
+sequelize.sync({force: true});
 
 function incrementDB(req, res, option) {
   Day.findOrCreate({
