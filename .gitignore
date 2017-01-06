@@ -38,4 +38,5 @@ jspm_packages
 .node_repl_history
 
 .env
-bundle.js
+prod.env
+dev.env
