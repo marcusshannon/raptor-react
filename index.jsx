@@ -62,7 +62,7 @@ class Button extends React.Component {
 
   handleClick() {
     var post = new XMLHttpRequest();
-    post.open("POST", this.props.value);
+    post.open("POST", process.env.URL + this.props.value);
     post.send();
   }
 
