@@ -20,7 +20,7 @@ class Graph extends React.Component {
   }
 
   componentDidMount() {
-    rp(process.env.URL + 'data').then(function(res) {
+    rp(process.env.URL + "data").then(function(res) {
       this.setState({
         data: JSON.parse(res).map(x => {x.date = new Date(x.date); return x}).sort((a, b) => a.date > b.date)
       });
@@ -62,7 +62,7 @@ class Button extends React.Component {
 
   handleClick() {
     var post = new XMLHttpRequest();
-    post.open("POST", process.env.URL + this.props.value);
+    post.open("POST", this.props.value);
     post.send();
   }
 

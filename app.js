@@ -1,7 +1,8 @@
 var express = require('express');
 var app = express();
 var path = require('path');
-var moment = require('moment')
+var moment = require('moment');
+require('dotenv').config();
 
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
@@ -32,7 +33,7 @@ var Day = sequelize.define('Day', {
   D: {type: Sequelize.INTEGER, defaultValue: 0}
 });
 
-sequelize.sync({force: true});
+sequelize.sync();
 
 function incrementDB(req, res, option) {
   Day.findOrCreate({
