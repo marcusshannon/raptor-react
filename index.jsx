@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-var rp = require('request-promise');
+var request = require('request');
 var moment = require('moment');
 
 class Logo extends React.Component {
@@ -20,9 +20,9 @@ class Graph extends React.Component {
   }
 
   componentDidMount() {
-    rp(process.env.URL + "data").then(function(res) {
+    request(process.env.URL + 'data', function(err, res, body) {
       this.setState({
-        data: JSON.parse(res).map(x => {x.date = new Date(x.date); return x}).sort((a, b) => a.date > b.date)
+        data: JSON.parse(body)
       });
       var labels = this.state.data.map(x => new moment(x.date).format("MMM D"));
       var series = [this.state.data.map(x => x.value)];
@@ -53,7 +53,6 @@ class Graph extends React.Component {
   }
 }
 
-
 class Button extends React.Component {
   constructor(props) {
     super(props);
@@ -61,9 +60,7 @@ class Button extends React.Component {
   }
 
   handleClick() {
-    var post = new XMLHttpRequest();
-    post.open("POST", process.env.URL + this.props.value);
-    post.send();
+    request.post(process.env.URL + this.props.value);
   }
 
   render() {
