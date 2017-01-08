@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+require('dotenv').config();
 
 module.exports = {
   entry: "./index.jsx",
@@ -13,6 +14,12 @@ module.exports = {
   },
   plugins:[
     new webpack.EnvironmentPlugin(['URL', 'NODE_ENV'])
+  ],
+  externals: [
+    {
+      'react': 'React',
+      'react-dom': 'ReactDOM'
+    }
   ],
   module: {
     loaders: [

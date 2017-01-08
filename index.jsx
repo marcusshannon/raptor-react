@@ -35,7 +35,7 @@ class Graph extends React.Component {
         showArea: true,
         showPoint: false,
         chartPadding: {
-          right: 50
+          right: 40,
         },
         axisX: {
           showGrid: true
