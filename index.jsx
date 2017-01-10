@@ -24,7 +24,7 @@ class Graph extends React.Component {
       this.setState({
         data: JSON.parse(body)
       });
-      var labels = this.state.data.map(x => new moment(x.date).format("MMM D"));
+      var labels = this.state.data.map(x => new moment(x.date).utcOffset(-5).format("MMM D"));
       var series = [this.state.data.map(x => x.value)];
       var data = {labels: labels, series: series};
       var options = {
