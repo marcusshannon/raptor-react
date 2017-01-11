@@ -24,13 +24,11 @@ class Graph extends React.Component {
       this.setState({
         data: JSON.parse(body)
       });
-      console.log(this.state.data);
       var labels = this.state.data.map(x => new moment(x.date).format("MMM D"));
       var series = [this.state.data.map(x => x.value)];
       var data = {labels: labels, series: series};
       var options = {
         fullWidth: true,
-        height: 500,
         low: 0,
         high: 1,
         showArea: true,
@@ -50,7 +48,7 @@ class Graph extends React.Component {
     }.bind(this));
   }
   render() {
-    return (<div className="ct-chart"></div>);
+    return (<div className="ct-chart ct-perfect-fourth"></div>);
   }
 }
 
