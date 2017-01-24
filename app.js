@@ -2,6 +2,8 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var moment = require('moment');
+var request = require('request');
+var rp = require('request-promise');
 require('dotenv').config();
 
 app.get('/', function(req, res) {
@@ -71,6 +73,13 @@ function calculateValue(obj) {
 app.get('/data', function(req, res) {
   Day.findAll({order: [['date', 'ASC']]}).then(function(data) {
     res.send(data.map(obj => { return {date: new moment(obj.date), A: obj.A, B: obj.B, C: obj.C, D: obj.D, value: calculateValue(obj)}}));
+  });
+});
+
+app.get('/team', function(req, res) {
+  rp('http://stats.nba.com/stats/commonteamroster?teamid=1610612761&season=2016-17')
+  .then(function(data) {
+    res.send(data);
   });
 });
 

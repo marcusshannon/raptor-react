@@ -1,6 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-var request = require('request');
 var moment = require('moment');
 
 class Logo extends React.Component {
@@ -20,10 +17,12 @@ class Graph extends React.Component {
   }
 
   componentDidMount() {
-    request(process.env.URL + 'data', function(err, res, body) {
-      this.setState({
-        data: JSON.parse(body)
-      });
+    fetch('/data')
+    .then(function(res) {
+      return res.json();
+    })
+    .then(function(body) {
+      this.setState({data: body});
       var labels = this.state.data.map(x => new moment(x.date).format("MMM D"));
       var series = [this.state.data.map(x => x.value)];
       var data = {labels: labels, series: series};
@@ -59,7 +58,7 @@ class Button extends React.Component {
   }
 
   handleClick() {
-    request.post(process.env.URL + this.props.value);
+    fetch('/' + this.props.value, {method: 'POST'});
   }
 
   render() {
