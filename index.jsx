@@ -47,7 +47,7 @@ class Graph extends React.Component {
     }.bind(this));
   }
   render() {
-    return (<div className="ct-chart ct-perfect-fourth"></div>);
+    return (<div className="ct-chart"></div>);
   }
 }
 
