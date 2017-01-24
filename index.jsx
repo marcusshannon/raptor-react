@@ -1,4 +1,5 @@
 var moment = require('moment');
+import 'whatwg-fetch';
 
 class Logo extends React.Component {
   render() {
